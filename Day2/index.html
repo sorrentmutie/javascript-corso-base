@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Geolocation</title>
+    <link rel="stylesheet" href="map.css">
+</head>
+<body>
+    <button id="cerca">CERCA</button>
+    <div id="status"></div>
+    <div id="map"></div>
+
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQIz3bxUElBcxofJ4plvhT0da4gJPs7zg"
+    async> </script>
+
+    <script>
+        document.getElementById("cerca").addEventListener('click', geoFindMe);
+        console.log(status);
+        status.innerText = "Starting";
+
+        function geoFindMe(){
+            var status = document.getElementById("status");  
+           if(!navigator.geolocation) {
+                status.textContent = "La Geolocation non è supportata";
+           } else {
+               navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+               status.innerText = "In attesa..";
+           }
+        }
+
+        function successCallback(position) {
+            var status = document.getElementById("status");  
+            console.log(position);
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            var accuracy = position.coords.accuracy;
+
+            const myPosition = { lat: latitude, lng: longitude };
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: myPosition,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: myPosition,
+                map: map,
+            });
+
+
+            status.innerText = "Lat:" + latitude + ", Lon: " + longitude + ", Accuracy: " + accuracy;
+        }
+
+        function errorCallback(error) {
+            var status = document.getElementById("status");  
+            console.log(error);
+            status.innerText = "Error: " + error.code;
+        }
+
+
+    </script>
+</body>
+</html>
