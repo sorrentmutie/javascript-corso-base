@@ -1,0 +1,15 @@
+{
+  "name": "demoajax",
+  "version": "1.1.1",
+  "description": "demo ajax",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Salvatore Sorrentino",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "5.1.3",
+    "jquery": "3.6.0"
+  }
+}

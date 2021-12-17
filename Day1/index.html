@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Heading H1</h1>
+    <p>Paragraph 1 </p>
+    <h2>Heading H2</h2>
+    <p>Paragraph 2</p>
+    <div id="miodiv">Mio DIV</div>
+
+    <script>
+        function AnalisiDom(){
+            console.log(document.body);
+            console.log(this);
+        }
+        AnalisiDom();
+        function AttraversaIlDOM(nodo, funzione){
+             funzione(nodo);
+             nodo = nodo.firstChild;
+             while(nodo) {
+                 AttraversaIlDOM(nodo, funzione);
+                 nodo = nodo.nextSibling;
+             }
+         }
+
+         AttraversaIlDOM(document.body, function(node){
+             
+             if(node.nodeType !== 3){
+                console.log(node.localName + " - " + node.innerText);
+             }
+         })
+
+  
+
+
+         function CambiaColore(id){
+             var elemento = document.getElementById(id);
+             elemento.style.color = "red";
+             elemento.innerText = "Testo cambiato";
+         }
+
+         CambiaColore("miodiv")
+
+    </script>
+</body>
+</html>
